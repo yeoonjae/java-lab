@@ -25,7 +25,6 @@ public class Resilience4jMain implements QuoteService {
     // Circuit breaker Configuration
     CircuitBreakerConfig config = CircuitBreakerConfig.custom()
         .slidingWindow(10, 5, SlidingWindowType.COUNT_BASED)
-        .automaticTransitionFromOpenToHalfOpenEnabled(true)
         .failureRateThreshold(50)
         .permittedNumberOfCallsInHalfOpenState(3)
         .waitDurationInOpenState(Duration.ofSeconds(10))
@@ -63,7 +62,7 @@ public class Resilience4jMain implements QuoteService {
   }
 
   public int getQuoteFallback(Throwable t) {
-    log.info("Inside Quote fallback Method for product"+ this.getProductName());
+    log.info("Inside Quote fallback Method for product "+ this.getProductName());
     if (getProductName().equalsIgnoreCase("Soap")) {
       return 10;
     } else if (getProductName().equalsIgnoreCase("Tooth Paste")) {
