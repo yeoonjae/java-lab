@@ -1,0 +1,28 @@
+#resilience4j:
+#  circuitbreaker:
+#    instances:
+#      circuitBreaker:
+#        registerHealthIndicator: true
+#        automaticTransitionFromOpenToHalfOpenEnabled: true
+#        failureRateThreshold: 50
+#        minimumNumberofCalls: 2
+#        permittedNumberOfCallsInHalfOpenState: 3
+#        slidingWindowSize: 10
+#        waitDurationInOpenState: 10
+#        slidingWindowType: COUNT_BASED
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      failureRateThreshold: 50
+      slowCallRateThreshold: 100
+      slowCallDurationThreshold: 60000
+      permittedNumberOfCallsInHalfOpenState: 4
+      maxWaitDurationInHalfOpenState: 1000
+      slidingWindowType: COUNT_BASED
+      slidingWindowSize: 10
+      minimumNumberOfCalls: 5
+      waitDurationInOpenState: 10000
+  instances:
+    hello:
+      baseConfig: default
