@@ -15,12 +15,12 @@ public class OrderRepositoryConcreteProxy extends OrderRepositoryV2 {
   public void save(String itemId) {
     TraceStatus status = null;
     try {
-      status = trace.begin("OrderRespository.request()");
+      status = trace.begin("OrderRespository.save()");
       target.save(itemId);
       trace.end(status);
     } catch (Exception e) {
       trace.exception(status, e);
-      e.printStackTrace();
+      throw e;
     }
   }
 }

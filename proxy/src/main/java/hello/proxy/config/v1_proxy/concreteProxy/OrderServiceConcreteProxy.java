@@ -2,6 +2,7 @@ package hello.proxy.config.v1_proxy.concreteProxy;
 
 import hello.proxy.app.v2.OrderRepositoryV2;
 import hello.proxy.app.v2.OrderServiceV2;
+import hello.proxy.trace.TraceStatus;
 import hello.proxy.trace.logtrace.LogTrace;
 import lombok.RequiredArgsConstructor;
 
@@ -16,4 +17,17 @@ public class OrderServiceConcreteProxy extends OrderServiceV2 {
     this.trace = trace;
   }
 
+  @Override
+  public void orderItem(String itemId) {
+    TraceStatus status = null;
+    try {
+      status = trace.begin("OrderService.orderItem()");
+      //target 호출
+      target.orderItem(itemId);
+      trace.end(status);
+    } catch (Exception e) {
+      trace.exception(status, e);
+      throw e;
+    }
+  }
 }
