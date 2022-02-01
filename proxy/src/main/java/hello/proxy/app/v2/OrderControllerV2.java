@@ -21,7 +21,7 @@ public class OrderControllerV2 {
   }
 
   @GetMapping("/v2/request")
-  public String request(@PathVariable String itemId) {
+  public String request(@RequestParam("itemId") String itemId) {
     orderService.orderItem(itemId);
     return "ok";
   }
