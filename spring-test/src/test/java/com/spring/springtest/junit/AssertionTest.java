@@ -60,7 +60,7 @@ class AssertionTest {
     assertAll(
         () -> assertNotNull(study),
         () -> assertEquals(StudyStatus.DRAFT, study.getStatus(), "스터디를 처음 만들면 상태값이 DRAFT 여야 한다."),
-        () -> assertTrue(study.getLimit() > 0, "스터디 최대 참석 인원은 0보다 크다.")
+        () -> assertTrue(study.getLimitCount() > 0, "스터디 최대 참석 인원은 0보다 크다.")
     );
   }
 

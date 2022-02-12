@@ -52,7 +52,7 @@ class ParameterTest {
   @ParameterizedTest(name = "{index} {displayName} message={0}")
   @ValueSource(ints = {10, 20, 30})
   void parameterTest3(@ConvertWith(StudyConverter.class) Study study) {
-    log.info("message={}", study.getLimit());
+    log.info("message={}", study.getLimitCount());
   }
 
   @DisplayName("파라미터로 테스트 - CsvSource 사용하기 (두개의 인자로 받기)")

@@ -22,7 +22,7 @@ class TagingTest {
   @Tag("fast")
   void create() {
     Study study = new Study(100);
-    assertThat(study.getLimit()).isGreaterThan(0);
+    assertThat(study.getLimitCount()).isGreaterThan(0);
     log.info("create 실행");
   }
 
