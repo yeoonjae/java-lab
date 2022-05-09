@@ -1,5 +1,6 @@
 package com.study.springjpabasic.hellojpa;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -18,17 +19,28 @@ public class JpaMain {
     try {
       // 등록
       /*Member member = new Member();
-      member.setId(2L);
-      member.setName("HelloB");
+      member.setId(3L);
+      member.setName("HelloC");
       em.persist(member);*/
 
       // 조회
-      Member findMember = em.find(Member.class, 1L);
+      /*Member findMember = em.find(Member.class, 1L);
       System.out.println("findMember = "+findMember.getId());
-      System.out.println("findMember = "+findMember.getName());
+      System.out.println("findMember = "+findMember.getName()); */
 
       // 수정
-      findMember.setName("HelloJPA"); // em.persist(findMember); 안해도됨
+      // findMember.setName("HelloJPA2"); // em.persist(findMember); 안해도됨
+
+      // 전체 회원 조회
+      List<Member> reuslt = em.createQuery("select m from Member as m", Member.class)
+          .setFirstResult(0)
+          .setMaxResults(2)
+          .getResultList();
+
+      for (Member member : reuslt) {
+        System.out.println("member.name : " + member.getName());
+      }
+
 
       tx.commit();
 
